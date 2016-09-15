@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnClick(View view) throws Exception{
+        game.isStart =true;
         if(textView.getText().equals("nico"))
         textView.setText("poi");
         else

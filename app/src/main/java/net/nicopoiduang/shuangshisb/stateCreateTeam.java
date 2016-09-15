@@ -9,20 +9,22 @@ public class stateCreateTeam extends avalonState{
     @Override
     public void init() {
         if(game.round==1)
-        game.setPlayerStatus("请等待队长组队");
-        else game.setPlayerStatus(game.agreeCount+"同意"+game.disAgreeCount+"反对");
+            ;
+        else game.setPlayerStatus(game.agreeCount+"同意"+game.disAgreeCount+"反对，请队长组队");
     }
     public stateCreateTeam(game game)
     {
         super(game);
         game.nextLeader();
+        game.leader.isLeader=true;
         game.leader.isInCreateTeam=true;
-        if(game.round==1)
-        game.leader.status="请你组队";
-
     }
     @Override
     void handle() {
+        if(game.round==1) {
+            game.setPlayerStatus("你是" + game.getJobName(player.job) + ",请等待队长组队~");
+            game.leader.status="你是" + game.getJobName(player.job) + ",请你组队~";
+        }
         if(game.isTeamAvailable() && player.isLeader)
         {
             game.team=(ArrayList<net.nicopoiduang.shuangshisb.player>) game.selection.clone();
@@ -33,5 +35,6 @@ public class stateCreateTeam extends avalonState{
             game.leader.isInCreateTeam=false;
             game.nowState=new stateVoteTeam(game);
         }
+        else player.status="组队不合法，人数不符或者你不是队长";
     }
 }

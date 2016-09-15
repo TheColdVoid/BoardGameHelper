@@ -20,14 +20,14 @@ public class stateVoteTeam extends avalonState {
     }
     @Override
     void handle() {
-        if(player.cmd=="同意"||player.isInVote)
+        if(player.cmd.equals("同意")&&player.isInVote)
         {
             player.isAgree=true;
             player.isInVote =false;
             game.agreeCount++;
             player.isVoted=true;
         }
-        if(player.cmd=="反对"||player.isInVote)
+        if(player.cmd.equals("反对")&&player.isInVote)
         {
             player.isDisAgree=true;
             player.isInVote =false;
@@ -49,6 +49,10 @@ public class stateVoteTeam extends avalonState {
             }
             else
             {
+                for (player i :
+                        game.team) {
+                    i.isInTeam=false;
+                }
                 game.nowState=new stateReCreateTeam(game);
             }
         }

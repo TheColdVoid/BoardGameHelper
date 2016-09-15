@@ -6,7 +6,7 @@ package net.nicopoiduang.shuangshisb;
 public class stateExecuteMission extends avalonState {
     @Override
     public void init() {
-        game.setPlayerStatus("请队员执行任务");
+        game.setPlayerStatus(game.agreeCount+"同意"+game.disAgreeCount+"反对,请队员执行任务");
         game.flowCount=0;
         for (player i :
                 game.team) {
@@ -21,26 +21,33 @@ public class stateExecuteMission extends avalonState {
     }
     @Override
     void handle() {
-        if(player.cmd=="同意"&&player.isInVote)
+        if(player.cmd.equals("同意")&&player.isInVote)
         {
             player.isInVote=false;
             player.isVoted=true;
             game.agreeCount++;
         }
-        if(player.cmd=="反对"&&player.isInVote)
+        if(player.cmd.equals("反对")&&player.isInVote)
         {
             player.isInVote=false;
             player.isVoted=true;
-            game.agreeCount++;
+            game.disAgreeCount++;
         }
         if(game.agreeCount+game.disAgreeCount>=game.team.size()) {
             if (game.disAgreeCount > 0) {
                 game.tGetScore();
-                game.roundResult[game.round] = "失败";
+                game.roundResult[game.round-1] = "失败";
             } else {
                 game.ctGetScore();
-                game.roundResult[game.round] = "成功";
+                game.roundResult[game.round-1] = "成功";
             }
+            for (player i :
+                    game.playerList) {
+                i.isVoted = false;
+                i.isInTeam=false;
+            }
+            game.round++;
+            game.leader.isLeader=false;
             game.nowState=new stateCreateTeam(game);
         }
     }

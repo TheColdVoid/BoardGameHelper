@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.*;
 public class game
 {
-	public boolean start=false;
+	public boolean isStart =false;
 	public int round = 1;
 	public int CTScore=1;
 	public int TScore=1;
@@ -135,7 +135,7 @@ public class game
 	}
 	public boolean isTeamAvailable()
 	{
-		if(teamSize[playerList.size()-5][round]==selection.size())
+		if(teamSize[playerList.size()-5][round-1]==selection.size())
 		{
 			return true;
 		}

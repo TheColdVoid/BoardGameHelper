@@ -3,7 +3,7 @@ package net.nicopoiduang.shuangshisb;
 public class player
 {
 	public String status="";
-	public String name = "null";
+	public String name = "没起名儿";
 	public boolean isVoted=false;
 	public boolean isInVote =false;
 	public boolean isAgree=false;
