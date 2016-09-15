@@ -1,5 +1,7 @@
 package net.nicopoiduang.shuangshisb;
 
+import java.net.URLDecoder;
+
 /**
  * Created by The_Void on 2016/9/4.
  */
@@ -47,8 +49,8 @@ public abstract class avalonState extends State {
             if (parameter.key.equals("name"))
                player.name=parameter.value;
             if(parameter.key.equals("button"))
-                player.cmd=parameter.value;
-            if(parameter.key.equals("checkBox"))
+                player.cmd= URLDecoder.decode(parameter.value);
+            if(parameter.key.equals("checkbox"))
                 game.selection.add(game.playerList.get(Integer.parseInt(parameter.value)));
         }
     }
