@@ -5,7 +5,7 @@ public class player
 	public String status="";
 	public String name = "null";
 	public boolean isVoted=false;
-	public boolean isInVoted=false;
+	public boolean isInVote =false;
 	public boolean isAgree=false;
 	public boolean isDisAgree=false;
 	public boolean isLeader=false;

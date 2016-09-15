@@ -22,10 +22,13 @@ public abstract class avalonState extends State {
     void judgeSituation()
     {
         if(player.job==joblist.assassin)
-            if(player.cmd.equals("assassinate"))
+            if(player.cmd.equals("刺杀"))
                 if(game.selection.size()==1)
                 {
-                    //TODO
+                    if(game.selection.get(0).job==joblist.merlin)
+                        game.nowState=new stateTWin(game,player);
+                    else
+                        game.nowState=new stateCTWin(game,player);
                 }
         if(game.TScore>=3)
         {
@@ -36,7 +39,7 @@ public abstract class avalonState extends State {
         if(game.CTScore>=3)
         {
             game.setPlayerStatus("请刺客杀人");
-            //TODo game.state=assasinState;
+            game.nowState=new stateWaitingForAssassination(game);
         }
         game.selection.clear();
     }

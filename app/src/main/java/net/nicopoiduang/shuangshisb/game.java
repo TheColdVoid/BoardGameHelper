@@ -14,7 +14,7 @@ public class game
 	public boolean tWin=false,ctWin=false;
 	private HashMap< String,player > nameTable = new HashMap<String, player>();
 	public int agreeCount = 0;
-	public int disagreeCount = 0;
+	public int disAgreeCount = 0;
 	public int flowCount = 0;
 	public boolean isOver=false;
 	public player actPlayer;

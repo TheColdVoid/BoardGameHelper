@@ -3,23 +3,18 @@ package net.nicopoiduang.shuangshisb;
 import java.util.ArrayList;
 
 /**
- * Created by The_Void on 2016/9/7.
+ * Created by The_Void on 2016/9/16.
  */
-public class stateCreateTeam extends avalonState{
+public class stateReCreateTeam extends avalonState{
     @Override
     public void init() {
-        if(game.round==1)
-        game.setPlayerStatus("请等待队长组队");
-        else game.setPlayerStatus(game.agreeCount+"同意"+game.disAgreeCount+"反对");
+        game.setPlayerStatus("请等待队长重新组队");
     }
-    public stateCreateTeam(game game)
+    public stateReCreateTeam(game game)
     {
         super(game);
-        game.nextLeader();
         game.leader.isInCreateTeam=true;
-        if(game.round==1)
-        game.leader.status="请你组队";
-
+        game.leader.status="请你重新组队";
     }
     @Override
     void handle() {
@@ -31,7 +26,7 @@ public class stateCreateTeam extends avalonState{
                 i.isInTeam = true;
             }
             game.leader.isInCreateTeam=false;
-            game.nowState=new stateVoteTeam(game);
+            game.nowState=new stateReVoteTeam(game);
         }
     }
 }

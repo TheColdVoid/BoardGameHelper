@@ -8,16 +8,8 @@ import java.net.Socket;
 
 
 public class MyHttpServerResponsor extends Thread{
-    public String postData;
-    //服务器根目录，post.html, upload.html都放在该位置
-    public static String WEB_ROOT = "c:/root";
-    //端口
-    private int port;
-    //用户请求的文件的url
     private String requestPath;
-    //mltipart/form-data方式提交post的分隔符,
     private String boundary = null;
-    //post提交请求的正文的长度
     private int contentLength = 0;
     private Socket socket=null;
     private game game;
@@ -35,7 +27,6 @@ public class MyHttpServerResponsor extends Thread{
     }
 
     public MyHttpServerResponsor(Socket socket,game game) {
-        WEB_ROOT = "";
         requestPath = null;
         this.socket=socket;
         this.game=game;
@@ -92,9 +83,10 @@ public class MyHttpServerResponsor extends Thread{
             postData=new String(buf, 0, size);
         }
         System.out.println(postData);
-//        game.dataPoster.update();
-        game.dataPoster.update(postData,player);
-        body=game.responseCombiner.getResponsePage(player);
+        synchronized (player) {
+            game.dataPoster.update(postData, player);
+            body = game.responseCombiner.getResponsePage(player);
+        }
         out.write(body);
         out.flush();
         String line2 = null;
