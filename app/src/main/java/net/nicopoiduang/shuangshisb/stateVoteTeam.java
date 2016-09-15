@@ -10,7 +10,7 @@ public class stateVoteTeam extends avalonState {
     }
     public stateVoteTeam(game game)
     {
-        super(game);
+        super(game);//
     }
     @Override
     void handle() {
