@@ -44,11 +44,11 @@ public class MyHttpServerResponsor extends Thread{
         else body=game.responseCombiner.getNewUserPage(player);
         out.write(body);
         out.flush();
+        System.out.println(body);
         //Thread.sleep(100);
         String line = null;
         while (!(line = reader.readLine()).isEmpty()) {
-            //System.out.println(line);
-            ;
+            System.out.println(line);
         }
             System.out.println("request complete.");
     }

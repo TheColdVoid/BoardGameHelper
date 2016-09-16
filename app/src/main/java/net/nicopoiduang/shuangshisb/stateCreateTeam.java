@@ -15,6 +15,13 @@ public class stateCreateTeam extends avalonState{
     public stateCreateTeam(game game)
     {
         super(game);
+        if(game.leader!=null) {
+            game.leader.isLeader = false;
+            for (player i :
+                    game.playerList) {
+                i.isInTeam = false;
+            }
+        }
         game.nextLeader();
         game.leader.isLeader=true;
         game.leader.isInCreateTeam=true;
@@ -25,7 +32,7 @@ public class stateCreateTeam extends avalonState{
             game.setPlayerStatus("你是" + game.getJobName(player.job) + ",请等待队长组队~");
             game.leader.status="你是" + game.getJobName(player.job) + ",请你组队~";
         }
-        if(game.isTeamAvailable() && player.isLeader)
+        if(game.isTeamAvailable() && player.isLeader&&player.cmd.equals("组队"))
         {
             game.team=(ArrayList<net.nicopoiduang.shuangshisb.player>) game.selection.clone();
             for (player i :
@@ -35,6 +42,7 @@ public class stateCreateTeam extends avalonState{
             game.leader.isInCreateTeam=false;
             game.nowState=new stateVoteTeam(game);
         }
-        else player.status="组队不合法，人数不符或者你不是队长";
+        else if(player.cmd.equals("组队"))
+        player.status="组队不合法，人数不符或者你不是队长";
     }
 }

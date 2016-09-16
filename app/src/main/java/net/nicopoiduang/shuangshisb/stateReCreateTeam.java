@@ -18,7 +18,7 @@ public class stateReCreateTeam extends avalonState{
     }
     @Override
     void handle() {
-        if(game.isTeamAvailable() && player.isLeader)
+        if(game.isTeamAvailable() && player.isLeader &&player.cmd.equals("组队"))
         {
             game.team=(ArrayList<net.nicopoiduang.shuangshisb.player>) game.selection.clone();
             for (player i :
@@ -26,7 +26,7 @@ public class stateReCreateTeam extends avalonState{
                 i.isInTeam = true;
             }
             game.leader.isInCreateTeam=false;
-            game.nowState=new stateVoteTeam(game);
+            game.nowState=new stateReVoteTeam(game);
         }
     }
 }

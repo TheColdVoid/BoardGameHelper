@@ -16,4 +16,18 @@ public class stateWaitingForAssassination extends avalonState{
     void handle() {
         ;
     }
+
+    @Override
+    void judgeSituation() {
+        if(player.job==joblist.assassin)
+            if(player.cmd.equals("刺杀"))
+                if(game.selection.size()==1)
+                {
+                    if(game.selection.get(0).job==joblist.merlin)
+                        game.nowState=new stateTWin(game,player);
+                    else
+                        game.nowState=new stateCTWin(game,player);
+                }
+        game.selection.clear();
+    }
 }

@@ -8,8 +8,8 @@ public class game
 {
 	public boolean isStart =false;
 	public int round = 1;
-	public int CTScore=1;
-	public int TScore=1;
+	public int CTScore=0;
+	public int TScore=0;
 	public String roundResult[]={null,null,null,null,null};
 	public boolean tWin=false,ctWin=false;
 	private HashMap< String,player > nameTable = new HashMap<String, player>();
@@ -101,6 +101,7 @@ public class game
 	public synchronized player getPlayer(SocketAddress socketIp)
 	{
 		String ip=socketIp.toString().substring(1,socketIp.toString().indexOf(":"));
+		//String ip=socketIp.toString().substring(1,socketIp.toString().length()-1);
 		if(nameTable.containsKey(ip))
 		{
 			System.out.println(ip+"Contain");
@@ -144,9 +145,9 @@ public class game
 	public String getJobColor(joblist job)
 	{
 		if(TJobList.contains(job))
-			return "#73B599";
-		if(CTJobList.contains(job))
 			return "#CD5755";
+		if(CTJobList.contains(job))
+			return "#73B599";
 		return null;
 	}
 	public String getJobName(joblist job)

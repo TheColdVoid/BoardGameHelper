@@ -32,7 +32,7 @@ public class responseCombiner {
     {
         this.player=player;
         StringBuffer result=new StringBuffer();
-        result.append(result);
+        result.append(HTTPHeader);
         result.append("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
@@ -47,7 +47,7 @@ public class responseCombiner {
                 "<body>\n" +
                 "<font color=#407D6E>\n" +
                 "<form action=\"/\" method=\"post\">");
-        result.append("<h1>阿瓦隆Beta</h1>");
+        result.append("<h1>阿瓦隆测试版</h1>");
         result.append(getNameBoxAndStatusBox());
 
         if(!game.isStart &&player.isAdmin)
@@ -61,10 +61,15 @@ public class responseCombiner {
             result.append(agreeButton);
             result.append(disagreeButton);
         }
+        if (player.name!=null&&player.name!="没起名儿")
+        {
+            result.append(getUpdateButton());
+        }
 
-        result.append(getUpdateButton());
         if(game.isStart)
             result.append(getScoreTable());
+        if(game.isStart&&game.flowCount>0)
+            result.append("<p>流局次数:"+game.flowCount+"</p>");
         result.append("\t</form>\n" +
                 "</font>\n" +
                 "</body>\n" +
@@ -74,7 +79,7 @@ public class responseCombiner {
     public synchronized String getNewUserPage(player player)
     {
         StringBuffer result=new StringBuffer();
-        result.append(result);
+        result.append(HTTPHeader);
         result.append("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
@@ -89,9 +94,10 @@ public class responseCombiner {
                 "<body>\n" +
                 "<font color=#407D6E>\n" +
                 "<form action=\"/\" method=\"post\">");
-        result.append("<h1>阿瓦隆</h1>");
+        result.append("<h1>阿瓦隆测试</h1>");
         result.append(nameBox);
         result.append(loginButton);
+    result.append("<p>作者：Void测试：mumumth<br>本软件遵循LGPL协议<br>项目网址:https://github.com/TheColdVoid/BoardGameHelper</p>");
         result.append("\t</form>\n" +
                 "</font>\n" +
                 "</body>\n" +
@@ -207,10 +213,12 @@ public class responseCombiner {
                 result.append("<td> <span style=\"color:#7A2127;\">反对</span> </td>");
             else
                 result.append("<td> <span style=\"color:#7A2127;\"></span> </td>");
-            if(i.isInTeam)
+            if(i.isInTeam&&!i.isLeader)
                 result.append("<td> <span style=\"color:#CD5755;\">在队</span> </td>");
             else if(i.isLeader)
-                result.append("<td> <span style=\"color:#CD5755;\">队长</span> </td>");
+                if(i.isInTeam)
+                result.append("<td> <span style=\"color:#CD5755;\">队长在队</span> </td>");
+                else result.append("<td> <span style=\"color:#CD5755;\">队长</span> </td>");
             else
                 result.append("<td> <span style=\"color:#CD5755;\"></span> </td>");
             result.append("</tr>");

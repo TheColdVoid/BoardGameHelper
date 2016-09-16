@@ -47,7 +47,6 @@ public class stateExecuteMission extends avalonState {
                 i.isInTeam=false;
             }
             game.round++;
-            game.leader.isLeader=false;
             game.nowState=new stateCreateTeam(game);
         }
     }
