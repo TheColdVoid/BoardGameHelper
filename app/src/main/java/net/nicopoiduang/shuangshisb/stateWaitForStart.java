@@ -1,8 +1,6 @@
 package net.nicopoiduang.shuangshisb;
 
-/**
- * Created by The_Void on 2016/9/2.
- */
+
 public class stateWaitForStart extends avalonState{
     @Override
     public void init() {

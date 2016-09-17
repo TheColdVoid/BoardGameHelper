@@ -2,9 +2,7 @@ package net.nicopoiduang.shuangshisb;
 
 import java.net.URLDecoder;
 
-/**
- * Created by The_Void on 2016/9/4.
- */
+
 public abstract class avalonState extends State {
     public void updateState(String postData,player player)
     {
@@ -34,10 +32,11 @@ public abstract class avalonState extends State {
         {
             game.tWin=true;
             game.setPlayerStatus("坏人胜利");
-            //TODo game.state=TWinState;
+            game.nowState=new stateTWin(game,null);
         }
         if(game.CTScore>=3)
         {
+            game.tWin=true;
             game.setPlayerStatus("请刺客杀人");
             game.nowState=new stateWaitingForAssassination(game);
         }

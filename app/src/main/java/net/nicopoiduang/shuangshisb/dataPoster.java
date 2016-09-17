@@ -1,8 +1,5 @@
 package net.nicopoiduang.shuangshisb;
 
-/**
- * Created by The_Void on 2016/9/3.
- */
 public class dataPoster {
     private State statePreMatch;
     private game game;

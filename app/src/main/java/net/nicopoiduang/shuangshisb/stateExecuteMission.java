@@ -1,8 +1,6 @@
 package net.nicopoiduang.shuangshisb;
 
-/**
- * Created by The_Void on 2016/9/16.
- */
+
 public class stateExecuteMission extends avalonState {
     @Override
     public void init() {

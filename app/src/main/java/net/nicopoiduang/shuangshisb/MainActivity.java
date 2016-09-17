@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -17,19 +18,25 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads().
                 detectDiskWrites().detectNetwork().penaltyLog().build());
         textView=(TextView)findViewById(R.id.textview);
-        serverTherad sth=new serverTherad(game);
-        sth.start();
+
+        MyHttpServerListener serverListener = new MyHttpServerListener(2333,game);
+        serverListener.start();
+
     }
 
-    public void btnClick(View view) throws Exception{
-        game.isStart =true;
-        if(textView.getText().equals("nico"))
-        textView.setText("poi");
-        else
-            textView.setText("nico");
-
+    public void btnClick(View view) throws Exception {
+        if(game.isStart=false||game.getPlayerCount()>=5) {
+            game.isStart = true;
+            textView.setText("游戏开始");
+            Button button = (Button) findViewById(R.id.button);
+            button.setText("重新开始");
         }
-
+        else if(game.isOver)
+        {
+            game=new game();
+        }
+        //TODO:Debug
+    }
 }
 
 

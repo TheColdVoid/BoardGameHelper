@@ -17,7 +17,6 @@ public class game
 	public int disAgreeCount = 0;
 	public int flowCount = 0;
 	public boolean isOver=false;
-	public player actPlayer;
 	public ArrayList<player> playerList=new ArrayList<player>();
 	public ArrayList<player> team=new ArrayList<player>();
 	public ArrayList<player> selection=new ArrayList<player>();
@@ -55,13 +54,11 @@ public class game
 	}
 	public final player getRandomPlayer()
 	{
-//ORIGINAL LINE: Random ran = new Random(unchecked((int)DateTime.Now.Ticks));
 		Random ran = new Random(System.currentTimeMillis());
 		return playerList.get(ran.nextInt(playerList.size()-1));
 	}
 	public game()
 	{
-		//playerCount = Count;
 		dataInit();
 		;
 	}

@@ -2,9 +2,7 @@ package net.nicopoiduang.shuangshisb;
 
 import java.util.ArrayList;
 
-/**
- * Created by The_Void on 2016/9/7.
- */
+
 public class stateCreateTeam extends avalonState{
     @Override
     public void init() {

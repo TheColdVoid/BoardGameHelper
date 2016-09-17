@@ -48,4 +48,3 @@ public enum joblist
 		return getMappings().get(value);
 	}
 }
-//S:State L:Lead T:Team C:ChooseTeam D:Discuss F:Flow Y:yes N:no J:job K:kill W:ct win B:t win V:Vote M:mission state

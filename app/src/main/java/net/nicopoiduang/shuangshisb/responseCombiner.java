@@ -1,7 +1,5 @@
 package net.nicopoiduang.shuangshisb;
-/**
- * Created by The_Void on 2016/8/30.
- */
+
 public class responseCombiner {
     private String HTTPHeader,nameBox,loginButton,updateButton, createTeamButton,agreeButton,disagreeButton, assassinateButton,adminButton;
     player player;
@@ -94,10 +92,10 @@ public class responseCombiner {
                 "<body>\n" +
                 "<font color=#407D6E>\n" +
                 "<form action=\"/\" method=\"post\">");
-        result.append("<h1>阿瓦隆测试</h1>");
+        result.append("<h1>阿瓦隆</h1>");
         result.append(nameBox);
         result.append(loginButton);
-    result.append("<p>作者：Void测试：mumumth<br>本软件遵循LGPL协议<br>项目网址:https://github.com/TheColdVoid/BoardGameHelper</p>");
+    result.append("<p>作者：Void测试：mumumth<br>本软件遵循LGPL开源协议<br>项目网址:https://github.com/TheColdVoid/BoardGameHelper</p>");
         result.append("\t</form>\n" +
                 "</font>\n" +
                 "</body>\n" +

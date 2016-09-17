@@ -3,7 +3,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by The_Void on 2016/8/25.
  */
 public class MyHttpServerListener extends Thread{
     int port;
@@ -22,16 +21,12 @@ public class MyHttpServerListener extends Thread{
             serverSocket = new ServerSocket(port);
             while (true)
             {
-
                 Socket socket = serverSocket.accept();
                 System.out.println("New Client");
-
-
                         responseThread= new MyHttpServerResponsor(socket,game);
                         responseThread.start();
                         System.out.println("Create Thread");
                         //Thread.sleep(5000);
-                //else System.out.println("same");
             }
         }
         catch (Exception e)
